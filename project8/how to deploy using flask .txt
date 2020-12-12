@@ -1,0 +1,48 @@
+How to deploy any project using flask 
+
+----write all codes / finish the project 
+
+---write flask code 
+from flask import Flask
+
+# Instantiate the Flask app
+app = Flask(__name__)
+
+@app.route('/') # Home directory
+def hello():
+    return "Hello AI-ML Batch 1 Students. Congratulations to all of you."
+
+# If you want to run this app, you must call the run()
+if __name__== '__main__':
+    app.run(debug=True)
+	
+	
+	
+-----save it as py format in same location
+
+----open command prompt and type that location(after cd "space" )and execute that python file(python filename.py)
+
+
+------copy and paste the ip we get in anaconda command prompt
+
+----check index file and style file in project 8 
+
+model = pickle.load(open('model.pkl', 'rb'))
+
+@app.route('/')
+def home():
+    return render_template('index.html')
+
+@app.route('/predict',methods=['POST'])
+def predict():
+    '''
+    For rendering results on HTML GUI
+    '''
+    int_features = [int(x) for x in request.form.values()] # requesting the input
+    final_features = [np.array(int_features)]# in numpy form
+    prediction = model.predict(final_features)
+
+    output = round(prediction[0], 2)# for point values 222.11
+
+    return render_template('index.html', prediction_text='Employee Salary should be $ {}'.format(output))
+-----
